@@ -1,0 +1,35 @@
+%md
+Hi 
+
+I recently completed an investigation into the data in our user, product and transaction spaces. I would like to share my findings, along with a few requests for support on enhancing the data quality:
+
+# Key Data Quality Issues & Outstanding Questions:
+
+Missing Values:
+
+Barcode: Both the transaction and product tables are missing barcode data, which is critical for tracking individual items. This is a significant gap, particularly as there are 69 brands without any barcodes in the product table.
+Duplicate Records:
+
+The transaction table contains duplicate records. After investigating, my assumption is that when a receipt ID has both a quantity (non-zero) and sale amount, that should be the retained row for the transaction. This may require cleaning up these duplicates.
+Data Consistency Issues:
+
+Final Quantity: The final quantity in the transaction table contains non-integer values, and I’m unsure whether this is correct. Could you confirm if we expect fractional quantities?
+Scan Date vs Purchase Date: There are transaction records where the scan date precedes the purchase date. This seems unusual and could be due to data entry errors or timing mismatches in the system. More context would be helpful.
+User Birth Date: Some records show birth dates after the account creation date, or for ages under 10 or over 100 at the time of account creation. I’d like clarification on how to handle these anomalies.
+Gender Column: The gender column contains similar but distinct values that could be standardized for clarity (e.g., "M" vs "Male").
+Product Table Issues:
+
+Product Categories: The product category columns in the product table are unclear, with many missing values. It’s also important to understand if these categories are hierarchical and how they relate to each other.
+Inconsistent Values: There are values like "Need Review," "brand not known," and "Unknown" in the brand and manufacturer fields, which need to be addressed. Additionally, three brands belong to multiple manufacturers, and some manufacturers are linked to multiple categories, which could cause confusion.
+Interesting Trend in the Data:
+
+I observed a pattern where certain transactions appear to have discrepancies between scan and purchase dates, which could indicate a potential area of system delay or misalignment. This could be worth exploring further if it impacts customer experience or sales reporting.
+Request for Action: To proceed with resolving these issues, I would need:
+
+Clarification on the "Final Quantity" field: Should non-integer values be considered valid, or should we round or filter them?
+Context on how we should handle missing and inconsistent barcode data: What steps can we take to retrieve this missing information for the affected products and brands?
+Insight into the relationship between product categories: Are there specific hierarchies, or should these categories be treated as independent attributes?
+Confirmation on the treatment of user birth dates and account creation dates: Are there any rules regarding how to handle ages outside the expected range?
+These data quality issues must be addressed to ensure the integrity of our analysis and subsequent decisions. Once we clarify these areas, I’ll be able to clean the data and proceed with further analysis.
+
+Let me know if you have any questions or need more details!
